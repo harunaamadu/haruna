@@ -13,7 +13,7 @@
  */
 
 import dynamic from "next/dynamic";
-import sanityConfig from "../../../../../sanity.config";
+import sanityConfig from "../../../../sanity.config";
 
 // NextStudio is only ever evaluated in the browser
 const NextStudio = dynamic(
