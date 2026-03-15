@@ -13,7 +13,6 @@
  */
 
 import dynamic from "next/dynamic";
-import sanityConfig from "../../../../sanity.config";
 
 // NextStudio is only ever evaluated in the browser
 const NextStudio = dynamic(
@@ -42,7 +41,8 @@ const NextStudio = dynamic(
 
 // Import config lazily too — it references process.env which is fine,
 // but keeping it alongside the dynamic import is cleaner
+import config from "../../../../sanity.config";
 
 export default function StudioPage() {
-  return <NextStudio config={sanityConfig} />;
+  return <NextStudio config={config} />;
 }
