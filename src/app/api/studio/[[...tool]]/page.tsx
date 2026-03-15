@@ -1,25 +1,47 @@
-import { NextStudio } from "next-sanity/studio";
+"use client";
+
+/**
+ * Sanity Studio page — /studio
+ *
+ * The Studio MUST be loaded with `ssr: false` via Next.js dynamic import.
+ * It calls React.createContext and accesses browser globals (window,
+ * localStorage) at module evaluation time — which crashes the Node.js
+ * SSR runtime during `next build`.
+ *
+ * `dynamic(..., { ssr: false })` defers the entire module to the browser,
+ * completely bypassing server-side evaluation.
+ */
+
+import dynamic from "next/dynamic";
 import sanityConfig from "../../../../../sanity.config";
-// import config from "../../../../sanity.config";
 
-// ─── Sanity Studio page ───────────────────────────────────────────────────────
-//
-// Mounts the full Sanity Studio at /studio in your Next.js app.
-// Access it at: http://localhost:3000/studio
-//
-// The [[...tool]] catch-all segment is required so that Studio's internal
-// routing (e.g. /studio/desk/post, /studio/vision) works correctly.
-//
-// force-static tells Next.js not to attempt server rendering this page —
-// the Studio is a fully client-side SPA and must be rendered in the browser.
+// NextStudio is only ever evaluated in the browser
+const NextStudio = dynamic(
+  () => import("next-sanity/studio").then((mod) => mod.NextStudio),
+  {
+    ssr:     false,
+    loading: () => (
+      <div
+        style={{
+          minHeight:      "100dvh",
+          display:        "flex",
+          alignItems:     "center",
+          justifyContent: "center",
+          background:     "#101010",
+          color:          "rgba(255,255,255,0.4)",
+          fontFamily:     "system-ui, sans-serif",
+          fontSize:       14,
+          letterSpacing:  "0.08em",
+        }}
+      >
+        Loading Studio…
+      </div>
+    ),
+  },
+);
 
-export const dynamic = "force-static";
-
-// Opt this route out of the Content Security Policy if you have one set,
-// since the Studio loads external scripts and fonts from Sanity's CDN.
-export const metadata = {
-  title: "Haruna — Studio",
-};
+// Import config lazily too — it references process.env which is fine,
+// but keeping it alongside the dynamic import is cleaner
 
 export default function StudioPage() {
   return <NextStudio config={sanityConfig} />;
