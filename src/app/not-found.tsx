@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 
 // ─── Links shown on the 404 page ─────────────────────────────────────────────
@@ -58,6 +56,7 @@ export default function NotFound() {
         .nf-link-item:hover { color: var(--primary) !important; }
         .nf-link-item:hover .nf-link-arrow { transform: translateX(3px) !important; }
         .nf-link-arrow { transition: transform 0.2s ease; }
+        .nf-cta-btn:hover { opacity: 0.88 !important; transform: scale(1.03) !important; }
       `}</style>
 
       {/* ── Ambient glow blobs ── */}
@@ -276,6 +275,7 @@ export default function NotFound() {
         <div className="nf-actions">
           <Link
             href="/"
+            className="nf-cta-btn"
             style={{
               display:       "inline-flex",
               alignItems:    "center",
@@ -291,14 +291,6 @@ export default function NotFound() {
               textDecoration:"none",
               boxShadow:     "0 8px 28px color-mix(in oklch, var(--primary) 30%, transparent)",
               transition:    "opacity 0.2s, transform 0.2s",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.opacity   = "0.88";
-              (e.currentTarget as HTMLElement).style.transform = "scale(1.03)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.opacity   = "1";
-              (e.currentTarget as HTMLElement).style.transform = "scale(1)";
             }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
