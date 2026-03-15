@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link";
 
 // ─── Links shown on the 404 page ─────────────────────────────────────────────
