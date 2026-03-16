@@ -415,7 +415,7 @@ export default function About() {
               <Eyebrow label="Who I Am" />
               {[
                 "I'm Haruna, a full-stack web developer with a deep passion for crafting digital experiences that sit at the intersection of engineering and design. I believe the best software is invisible: it works so intuitively that users never have to think about it.",
-                "My journey started with a single HTML file and grew into a love for building entire systems — from pixel-perfect UIs to robust APIs. I thrive in the details: the micro-interaction that surprises, the architecture that scales, the line of code that's exactly right.",
+                "My journey started with a single HTML file and grew into a love for building entire systems from pixel-perfect UIs to robust APIs. I thrive in the details: the micro-interaction that surprises, the architecture that scales, the line of code that's exactly right.",
                 "When I'm not coding, I'm exploring design systems, contributing to open source, or mentoring developers earlier in their journey.",
               ].map((text, i) => (
                 <p
